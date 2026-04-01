@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Arad Ashkan">
+  <meta name="description" content="https://github.com/aradashkan">
+  <title>Nexus Tools</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar / Category Navigation -->
+    <aside class="sidebar">
+      <div class="logo-area">
+        <i class="fas fa-bolt"></i>
+        <span>Nexus<span class="accent">Tools</span></span>
+      </div>
+      <nav class="category-nav">
+        <button class="cat-btn active" data-category="timestamp">
+          <i class="fas fa-clock"></i> <span>Timestamp</span>
+        </button>
+        <button class="cat-btn" data-category="length">
+          <i class="fas fa-ruler"></i> <span>Length</span>
+        </button>
+        <button class="cat-btn" data-category="weight">
+          <i class="fas fa-weight-hanging"></i> <span>Weight</span>
+        </button>
+        <button class="cat-btn" data-category="temperature">
+          <i class="fas fa-temperature-high"></i> <span>Temp</span>
+        </button>
+        <button class="cat-btn" data-category="date-diff">
+          <i class="fas fa-calendar-week"></i> <span>Date diff</span>
+        </button>
+      </nav>
+      <div class="sidebar-footer">
+        <p>NexusTools 2026</p>
+      </div>
+    </aside>
+
+    <!-- Main Content: Tools Panel -->
+    <main class="main-panel">
+      <header class="top-bar">
+        <h1><i class="fas fa-microchip"></i> utility forge</h1>
+      </header>
+
+      <!-- Timestamp Section (default visible) -->
+      <section id="timestamp-section" class="tool-section active-section">
+        <div class="tool-card">
+          <div class="tool-header">
+            <i class="fas fa-hourglass-half"></i>
+            <h2>Timestamp & Reverse</h2>
+            <span class="tool-badge">unix • ms</span>
+          </div>
+          <div class="tool-body dual-grid">
+            <div class="input-group">
+              <label>Unix Timestamp (seconds)</label>
+              <div class="input-icon">
+                <i class="fas fa-hashtag"></i>
+                <input type="number" id="unix-input" placeholder="e.g., 1743638400" step="1">
+              </div>
+              <button id="convert-unix-btn" class="primary-btn"><i class="fas fa-arrow-right"></i> to human</button>
+              <div class="result-box" id="unix-result">—</div>
+            </div>
+            <div class="input-group">
+              <label>Human Date / Time</label>
+              <input type="datetime-local" id="datetime-local-input">
+              <button id="convert-date-btn" class="primary-btn"><i class="fas fa-arrow-left"></i> to timestamp</button>
+              <div class="result-box" id="date-result">—</div>
+            </div>
+          </div>
+          <div class="extra-tools">
+            <button id="current-ts-btn" class="secondary-btn"><i class="fas fa-sync-alt"></i> current unix (now)</button>
+            <span id="live-ms-timestamp" class="live-ms">ms: —</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Length Converter Section -->
+      <section id="length-section" class="tool-section">
+        <div class="tool-card">
+          <div class="tool-header">
+            <i class="fas fa-ruler-combined"></i>
+            <h2>Length converter</h2>
+            <span class="tool-badge">cm ↔ m ↔ mm ↔ km</span>
+          </div>
+          <div class="tool-body">
+            <div class="converter-grid">
+              <div class="input-group">
+                <label>Value</label>
+                <input type="number" id="length-value" placeholder="0" value="100">
+              </div>
+              <div class="input-group">
+                <label>From</label>
+                <select id="length-from">
+                  <option value="cm">Centimeter (cm)</option>
+                  <option value="m">Meter (m)</option>
+                  <option value="mm">Millimeter (mm)</option>
+                  <option value="km">Kilometer (km)</option>
+                </select>
+              </div>
+              <div class="input-group">
+                <label>To</label>
+                <select id="length-to">
+                  <option value="cm">Centimeter (cm)</option>
+                  <option value="m" selected>Meter (m)</option>
+                  <option value="mm">Millimeter (mm)</option>
+                  <option value="km">Kilometer (km)</option>
+                </select>
+              </div>
+            </div>
+            <button id="convert-length-btn" class="primary-btn full-width"><i class="fas fa-exchange-alt"></i> convert</button>
+            <div class="result-box highlight-result" id="length-result">100 cm = 1.00 m</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Weight Converter Section -->
+      <section id="weight-section" class="tool-section">
+        <div class="tool-card">
+          <div class="tool-header">
+            <i class="fas fa-weight-scale"></i>
+            <h2>Weight converter</h2>
+            <span class="tool-badge">kg • g • lb • oz</span>
+          </div>
+          <div class="tool-body">
+            <div class="converter-grid">
+              <div class="input-group"><label>Value</label><input type="number" id="weight-value" placeholder="0" value="1"></div>
+              <div class="input-group"><label>From</label>
+                <select id="weight-from"><option value="kg">Kilogram (kg)</option><option value="g">Gram (g)</option><option value="lb">Pound (lb)</option><option value="oz">Ounce (oz)</option></select>
+              </div>
+              <div class="input-group"><label>To</label>
+                <select id="weight-to"><option value="kg">Kilogram (kg)</option><option value="g">Gram (g)</option><option value="lb">Pound (lb)</option><option value="oz">Ounce (oz)</option></select>
+              </div>
+            </div>
+            <button id="convert-weight-btn" class="primary-btn full-width"><i class="fas fa-arrows-spin"></i> convert</button>
+            <div class="result-box highlight-result" id="weight-result">1 kg = 1.00 kg</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Temperature Converter -->
+      <section id="temperature-section" class="tool-section">
+        <div class="tool-card">
+          <div class="tool-header"><i class="fas fa-thermometer-half"></i><h2>Temperature</h2><span class="tool-badge">°C / °F / K</span></div>
+          <div class="tool-body">
+            <div class="converter-grid">
+              <div class="input-group"><label>Value</label><input type="number" id="temp-value" placeholder="0" value="25"></div>
+              <div class="input-group"><label>From</label>
+                <select id="temp-from"><option value="c">Celsius</option><option value="f">Fahrenheit</option><option value="k">Kelvin</option></select>
+              </div>
+              <div class="input-group"><label>To</label>
+                <select id="temp-to"><option value="c">Celsius</option><option value="f">Fahrenheit</option><option value="k">Kelvin</option></select>
+              </div>
+            </div>
+            <button id="convert-temp-btn" class="primary-btn full-width"><i class="fas fa-fire"></i> convert</button>
+            <div class="result-box highlight-result" id="temp-result">25 °C = 77.00 °F</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Date Difference Calculator -->
+      <section id="date-diff-section" class="tool-section">
+        <div class="tool-card">
+          <div class="tool-header"><i class="fas fa-calendar-alt"></i><h2>Date difference</h2><span class="tool-badge">days • time</span></div>
+          <div class="tool-body">
+            <div class="dual-grid">
+              <div class="input-group"><label>Start date</label><input type="date" id="start-date" value="2025-01-01"></div>
+              <div class="input-group"><label>End date</label><input type="date" id="end-date" value="2025-12-31"></div>
+            </div>
+            <button id="compute-diff-btn" class="primary-btn full-width"><i class="fas fa-calculator"></i> calculate difference</button>
+            <div class="result-box" id="diff-result">Days: 364 days | approx 0 years</div>
+            <div class="extra-info" id="diff-precise"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
